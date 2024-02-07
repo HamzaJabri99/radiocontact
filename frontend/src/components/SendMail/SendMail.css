@@ -1,0 +1,24 @@
+.SendMail form{
+    width: 80%;
+    margin: 1rem auto;
+}
+.SendMail form label{
+    color: black !important;
+}
+.SendMail form button{
+    width: 50px ;
+}
+.SendMail form input{
+    width: 90%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background-color: #efefef;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-bottom: 1px solid #009fe3;
+    outline: none;
+}
+.SendMail form input:focus{
+    border-bottom: 2px solid #009fe3;
+}

@@ -1,10 +1,13 @@
+import { useState } from "react";
 import CouponCard from "../CouponCard/CouponCard";
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
+import SendMail from "../SendMail/SendMail";
 const Modal = ({ setIsOpen, voucherCode }) => {
+  const [showSendMail, setShowMail] = useState(false);
   return (
     <div className="Container">
-      <div className={styles.darkBG}  />
+      <div className={styles.darkBG} />
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
@@ -29,13 +32,17 @@ const Modal = ({ setIsOpen, voucherCode }) => {
               </button>
               <button
                 className={styles.cancelBtn}
-                onClick={() => window.location.reload()}
+                onClick={() => setShowMail(!showSendMail)}
               >
-                Cancel
+                Send Mail?
               </button>
+              
             </div>
           </div>
+        {showSendMail&&<SendMail/>}
+
         </div>
+
       </div>
     </div>
   );
