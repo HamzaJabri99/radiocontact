@@ -1,9 +1,7 @@
 import { useState } from "react";
 import "./CouponCard.css"; // Import CSS file
 
-const CouponCard = ({ voucherCode, percent }) => {
-  
-
+const CouponCard = ({ voucherCode, percent, voucherAmount }) => {
   const copyCode = () => {
     const copyText = document.getElementById("copyvalue");
     copyText.select();
@@ -26,7 +24,7 @@ const CouponCard = ({ voucherCode, percent }) => {
           <div className="content">
             <h2>Becharge</h2>
             <h1>
-              10% <span>Coupon</span>
+              {voucherAmount} <span>Coupon</span>
             </h1>
           </div>
         </div>

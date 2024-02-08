@@ -18,12 +18,12 @@
   
   .modal {
     width: 500px;
-    height: 500px;
     background: white;
     color: white;
     z-index: 10;
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+    padding-bottom: 1rem;
   }
   
   .modalHeader {
@@ -51,10 +51,10 @@
   }
   
   .modalActions {
-    position: absolute;
+    margin: 4rem auto;
     bottom: 2px;
     margin-bottom: 10px;
-    width: 100%;
+    
   }
   
   .actionsContainer {
@@ -115,14 +115,15 @@
     font-size: 0.8rem;
     border: none;
     color: #2c3e50;
-    background: #fcfcfc;
+    background: #76dfe7;
     transition: all 0.25s ease;
   }
   
   .cancelBtn:hover {
     box-shadow: none;
     transform: none;
-    background: whitesmoke;
+    background: rgb(100, 250, 212);
+    transform: translateY(-5px);
   }
 
   @media screen and (max-width:560px) {

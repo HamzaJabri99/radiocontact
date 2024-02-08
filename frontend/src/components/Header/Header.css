@@ -13,31 +13,46 @@
 .Header h2 {
   font-family: "Open Sans", sans-serif;
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
   z-index: 0;
   margin-right: 2rem;
+}
+.Header .language_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+.Header .language_div img {
+  width: 40px;
+  height: auto;
+  cursor: pointer;
 }
 @media screen and (max-width: 1536px) {
   .Header {
     background-position: center bottom -40px;
   }
   .Header h2 {
-    font-size: 3rem;
-
+    font-size: 2.5rem;
   }
 }
 @media screen and (max-width: 1280px) {
-    .Header {
-        background-position: center bottom 0;
-      }
-      .Header h2 {
-        font-size: 2rem;
-    
-        margin-right: 1rem;
-      }
+  .Header {
+    background-position: center bottom 0;
   }
-@media screen and (max-width:645px){
-    .Header{
-        background-image: url("../../../public/radiocontactImgMobile.png");
-    }
+  .Header h2 {
+    font-size: 2rem;
+    margin-right: 1rem;
+  }
+}
+@media screen and (max-width: 1020px) {
+  .Header h2 {
+    font-size: 1.4rem;
+  }
+}
+@media screen and (max-width: 645px) {
+  .Header {
+    background-image: url("../../../public/radiocontactImgMobile.png");
+  }
 }

@@ -6,7 +6,8 @@
     color: black !important;
 }
 .SendMail form button{
-    width: 50px ;
+    width: 180px ;
+    padding: 1rem 2rem;
 }
 .SendMail form input{
     width: 90%;

@@ -1,5 +1,6 @@
 import React, { Component, createRef } from "react";
 import Modal from "./Modal/Modal";
+import { CiGift } from "react-icons/ci";
 
 import axios from "axios";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
@@ -22,252 +23,252 @@ const data = {
     {
       id: 1,
       sort_order: 1,
-      name: "100 Voucher",
+      name: "100€",
       type: "voucher",
       reward_item: true,
     },
     {
       id: 2,
       sort_order: 2,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 3,
       sort_order: 3,
-      name: "50 Voucher",
+      name: "50€",
       type: "voucher",
       reward_item: true,
     },
     {
       id: 4,
       sort_order: 4,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 5,
       sort_order: 5,
-      name: "5 Voucher",
+      name: "5%",
       type: "voucher",
       reward_item: true,
     },
     {
       id: 6,
       sort_order: 6,
-      name: "10 Voucher",
+      name: "10€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 7,
       sort_order: 7,
-      name: "5 Voucher",
+      name: "5%",
       type: "voucher",
       reward_item: true,
     },
     {
       id: 8,
       sort_order: 8,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 9,
       sort_order: 9,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 10,
       sort_order: 10,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 11,
       sort_order: 11,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 12,
       sort_order: 12,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 13,
       sort_order: 13,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 14,
       sort_order: 14,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 15,
       sort_order: 15,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 16,
       sort_order: 16,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 17,
       sort_order: 17,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 18,
       sort_order: 18,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 19,
       sort_order: 19,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 20,
       sort_order: 20,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 21,
       sort_order: 21,
-      name: "5 Voucher",
+      name: "5€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 22,
       sort_order: 22,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 23,
       sort_order: 23,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 24,
       sort_order: 24,
-      name: "5 Voucher",
+      name: "5€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 25,
       sort_order: 25,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 26,
       sort_order: 26,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 27,
       sort_order: 27,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 28,
       sort_order: 28,
-      name: "5 Voucher",
+      name: "5€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 29,
       sort_order: 29,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 30,
       sort_order: 30,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 31,
       sort_order: 31,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 32,
       sort_order: 32,
-      name: "5 Voucher",
+      name: "5€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 33,
       sort_order: 33,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 34,
       sort_order: 34,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 35,
       sort_order: 35,
-      name: "5 Voucher",
+      name: "5%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 36,
       sort_order: 36,
-      name: "5 Voucher",
+      name: "5€",
       type: "wrp",
       reward_item: true,
     },
@@ -326,7 +327,7 @@ class Wheel1 extends Component {
     "#FF6347",
     "#00FF7F",
     "#800080",
-    "#FFFF00",
+    "##FF27B4",
     "#8A2BE2",
     "#2E8B57",
     "#815CD1",
@@ -368,7 +369,7 @@ class Wheel1 extends Component {
     "#FF6347",
     "#00FF7F",
     "#800080",
-    "#FFFF00",
+    "#FF27B4",
     "#8A2BE2",
     "#2E8B57",
     "#3DA5E0",
@@ -400,7 +401,7 @@ class Wheel1 extends Component {
     }
   }
   componentDidMount() {
-    console.log("winning segment should be " + this.winningSegment);
+    //console.log("winning segment should be " + this.winningSegment);
     if (data.spin_wheel_options && data.spin_wheel_options.length > 0) {
       this.segments = data.spin_wheel_options.map((i) => i.name);
     }
@@ -468,7 +469,7 @@ class Wheel1 extends Component {
       isPlayedAlready: true,
     });
     // Start the wheel only if it's not already spinning
-    if (this.timerHandle === 0) {
+    if (this.timerHandle === 0 && !this.state.isFinished) {
       this.spinStart = new Date().getTime();
       this.maxSpeed = Math.PI / (16 + Math.random());
       this.frames = 0;
@@ -554,7 +555,7 @@ class Wheel1 extends Component {
     ctx.rotate((lastAngle + angle) / 2);
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 1em proxima-nova";
+    ctx.font = "bold 1.5rem proxima-nova";
     ctx.fillText(value.substr(0, 20), size / 2 + 20, 0);
     ctx.restore();
 
@@ -641,8 +642,10 @@ class Wheel1 extends Component {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#fff";
-    ctx.font = "bold 1em proxima-nova";
-    ctx.fillText(this.segments[segmentIndex], centerX, centerY - 0);
+    ctx.font = "bold 1rem proxima-nova";
+    ctx.fillText("Becharge ", centerX, centerY - 10);
+    ctx.font = "bold 2rem proxima-nova";
+    ctx.fillText(this.segments[segmentIndex], centerX, centerY + 20);
     this.setState({ winner: this.segments[segmentIndex] });
   };
 
@@ -687,7 +690,7 @@ class Wheel1 extends Component {
       this.setState({ isOpenModal: true });
     } catch (error) {
       if (error.response.data.alreadyClaimed) {
-        this.setState({ obtainedError: "désolé vous avez déjà reçu le code!" });
+        this.setState({ obtainedError: "alreadyGotCode" });
       }
       // Handle error
     }
@@ -700,26 +703,38 @@ class Wheel1 extends Component {
     return (
       <React.Fragment>
         <div id="wheelContainer">
-          <canvas id="canvas" width="600" height="600" />
+          <canvas id="canvas" width="600" height="600" style={{cursor:this.state.isFinished?"not-allowed":"pointer"}}/>
           {this.state.isFinished && (
             <div className="reward_container">
               <ConfettiComponent />
-              <p style={{ textAlign: "center", color: "green" }}>
-                You Have Won {this.state.winner} !
-              </p>
+              <h3 style={{ textAlign: "center", color: "green", marginTop:"1rem"}}>
+                {this.props.getTranslation(this.props.lang,"youHaveWon")}{this.state.winner} !
+                {console.log(this.state.winner)}
+              </h3>
               <button
                 onClick={this.handleClaimReward}
                 ref={this.claimRewardButtonRef}
                 className=""
               >
-                Claim your Reward
+                <CiGift size={50} className="cadeau" />
+
+                {this.props.getTranslation(this.props.lang, "getReward")}
               </button>
-             <p style={{color:'red'}}>{this.state.obtainedError && this.state.obtainedError}</p> 
+              <p style={{ color: "red" }}>
+                {this.state.obtainedError &&
+                  this.props.getTranslation(
+                    this.props.lang,
+                    this.state.obtainedError
+                  )}
+              </p>
             </div>
           )}
         </div>
         {this.state.isOpenModal && (
           <Modal
+            lang={this.props.lang}
+            getTranslations={this.props.getTranslation}
+            voucherAmount={this.state.winner}
             voucherCode={this.state.voucherCode}
             setIsOpen={this.handleSetOpen}
           />

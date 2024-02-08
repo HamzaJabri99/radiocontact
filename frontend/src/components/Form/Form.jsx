@@ -3,8 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import Wheel1 from "../Wheel1";
-const Form = ({ showVid, setShowVid }) => {
+import { BsHandIndex } from "react-icons/bs";
+const Form = ({ showVid, setShowVid, videoEnded, getTranslation, lang }) => {
   const wheelRef = useRef(null);
+  const formRef = useRef(null);
   const [showErrorGif, setShowErrorGif] = useState(false);
   const [answers, setAnswers] = useState({
     mainQuestion: "",
@@ -73,6 +75,14 @@ const Form = ({ showVid, setShowVid }) => {
       setShowVid(true);
     }
   }, [successMsg, setShowVid]);
+  useEffect(() => {
+    if (videoEnded && formRef.current !== null) {
+      formRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  });
   const handleSubmit = async (e) => {
     e.preventDefault();
     const ipResponse = await axios.get("https://api64.ipify.org?format=json");
@@ -92,25 +102,25 @@ const Form = ({ showVid, setShowVid }) => {
     };
     console.log(requestData);
 
-
-
     if (validateForm()) {
       // Logic for submitting the form goes here
       // For demonstration purposes, I'm just setting a success message
       const insertResult = await axios.post(
         "http://localhost/radiocontact/backend/create.php",
-        requestData,{
-          headers:{'Content-Type':'application/x-www-form-urlencoded'}
+        requestData,
+        {
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
         }
       );
-      setSuccessMsg("Answers are correct!");
+      setSuccessMsg("answersAreCorrect");
     } else if (!validateEmptyForm()) {
       setSuccessMsg("");
     } else {
       const insertResult = await axios.post(
         "http://localhost/radiocontact/backend/create.php",
-        requestData,{
-          headers:{'Content-Type':'application/x-www-form-urlencoded'}
+        requestData,
+        {
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
         }
       );
       setShowErrorGif(true);
@@ -122,12 +132,14 @@ const Form = ({ showVid, setShowVid }) => {
     <div className="Form container">
       {showErrorGif ? (
         <div style={{ textAlign: "center" }}>
-          <p>Desole une de votre reponse est incorrecte! a la prochaine.</p>
+          <h3 style={{ color: "red" }}>
+            {getTranslation(lang, "oneOfYourAnswersIsWrong")}
+          </h3>
           <img src="https://media1.giphy.com/media/UrcXN0zTfzTPi/200w.gif" />
         </div>
       ) : (
         <>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} ref={formRef}>
             <div className="questions">
               {!successMsg && (
                 <>
@@ -159,15 +171,21 @@ const Form = ({ showVid, setShowVid }) => {
             </div>
           </form>
           <div>
-            <p
+            {successMsg&&<p
               className="success"
               ref={wheelRef}
               style={{ textAlign: "center", margin: "1rem auto" }}
             >
-              {successMsg}
-            </p>
+              <h3 style={{ color: "green" }}>
+                {getTranslation(lang, successMsg)}
+                
+              </h3>
+              <BsHandIndex className="handIndex" fontSize={30}/>
+            </p>}
 
-            {successMsg && <Wheel1 />}
+            {successMsg && (
+              <Wheel1 lang={lang} getTranslation={getTranslation} />
+            )}
           </div>
           <span className="error">{errors.emailResponse}</span>
         </>
