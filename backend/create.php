@@ -14,7 +14,12 @@ function checkClaimedReward($ip_address, $device_fingerprint)
     $stmtCheck = $db->prepare("SELECT id FROM claimed_vouchers WHERE ip_address = ? OR device_fingerprint = ?");
     $stmtCheck->execute([$ip_address, $device_fingerprint]);
     $existingClaim = $stmtCheck->fetch();
-    return $existingClaim;
+    
+    if ($existingClaim) {
+        return true;
+    } else {
+        return false; 
+    }
 }
 
 try {
@@ -43,6 +48,8 @@ try {
             // Update the claimed status for the voucher
             $stmtInsert = $db->prepare('INSERT INTO claimed_vouchers(ip_address,device_fingerprint,voucher_code,claimed_at) values (?,?,?,?)');
             $stmtInsert->execute([$requestData['ip_address'], $requestData['device_fingerprint'], $resultSelect['code'], date('Y-m-d H:i:s')]);
+            $stmtUpdateUser = $db->prepare("UPDATE participation_records SET voucher_id=? WHERE ip_address=? AND device_fingerprint=?");
+            $stmtUpdateUser->execute([$resultSelect['id'], $requestData['ip_address'], $requestData['device_fingerprint']]);
             $stmtUpdate = $db->prepare("UPDATE vouchers SET claimed=? WHERE code=?");
             $stmtUpdate->execute([1, $resultSelect['code']]);
             http_response_code(200);
