@@ -8,17 +8,7 @@ import "./Wheel1.css";
 import ConfettiComponent from "./ConfettiComponent";
 
 const data = {
-  card_type: "used-card",
-  id: 26,
-  type: "spin-wheel",
-  image_url:
-    "https://s3.ap-south-1.amazonaws.com/winds-development/reward-system/cards/spin-wheel-1.png",
-  unlocked: true,
-  unlock_text: null,
-  description: "Win Voucher upto 1500 or WRP upto 500!",
-  source: "Voucher Test Order #616",
-  used: true,
-  won: true,
+
   spin_wheel_options: [
     {
       id: 1,
@@ -273,18 +263,7 @@ const data = {
       reward_item: true,
     },
   ],
-  spin_wheel_winning_id: 11,
-  rewards: [
-    {
-      reward_id: 26,
-      type: "wrp",
-      name: "WRP",
-      display_name: "You have won WRP",
-      image_url:
-        "https://s3.ap-south-1.amazonaws.com/winds-development/reward-system/prizes/wrp-win.png",
-      value: 400,
-    },
-  ],
+  
 };
 
 class Wheel1 extends Component {
@@ -709,16 +688,15 @@ class Wheel1 extends Component {
               <ConfettiComponent />
               <h3 style={{ textAlign: "center", color: "green", marginTop:"1rem"}}>
                 {this.props.getTranslation(this.props.lang,"youHaveWon")}{this.state.winner} !
-                {console.log(this.state.winner)}
               </h3>
               <button
                 onClick={this.handleClaimReward}
                 ref={this.claimRewardButtonRef}
-                className=""
+                className="claimReward_btn"
               >
                 <CiGift size={50} className="cadeau" />
 
-                {this.props.getTranslation(this.props.lang, "getReward")}
+                {this.props.getTranslation(this.props.lang, "getReward")} !
               </button>
               <p style={{ color: "red" }}>
                 {this.state.obtainedError &&

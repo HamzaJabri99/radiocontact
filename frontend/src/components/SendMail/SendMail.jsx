@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SendMail.css";
 import axios from "axios";
-const SendMail = () => {
+const SendMail = ({lang,getTranslations}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ const SendMail = () => {
         <label htmlFor="">Email: </label>
         <input type="email" name="email" id="" autoFocus />
         <button>
-          {isLoading ? "loading..." : "Send"}
+          {isLoading ? "loading..." : getTranslations(lang,'send')}
           {isFinished ? "Sent" : ""}
         </button>
       </form>

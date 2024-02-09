@@ -19,6 +19,10 @@ const translations = {
     youHaveWon: "Vous avez gangé ",
     hereIsYourCode: "Congratulations! Voici ton Coupon Code",
     keepItSafe: "Enregistrez-le bien, sinon vous ne pourrez plus l'obtenir :D",
+    youSureWannaClose:"Avez-vous enregistré votre code ?",
+    sendMail:"Envoyer un e-mail",
+    okDone:'OK fait',
+    send:"Envoyer"
   },
   deu: {
     ready_to_win: "Klaar om te winnen?",
@@ -40,6 +44,10 @@ const translations = {
     youHaveWon: "Je hebt gewonnen",
     hereIsYourCode: "Gefeliciteerd! Hier is uw couponcode",
     keepItSafe: "Bewaar het goed, anders krijg je het niet meer :D",
+    youSureWannaClose:"Heeft u uw code opgeslagen?",
+    sendMail:"E-mail verzenden",
+    okDone:'oke, klaar',
+    send:'versturen'
   },
 };
 export default translations;

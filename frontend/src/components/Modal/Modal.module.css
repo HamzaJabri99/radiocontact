@@ -129,7 +129,7 @@
   @media screen and (max-width:560px) {
     .modal {
       width: 450px;
-      height: 400px;
+      height: auto;
       background: white;
       color: white;
       z-index: 10;
@@ -140,7 +140,7 @@
   @media screen and (max-width:450px) {
     .modal {
       width: 350px;
-      height: 400px;
+      height: auto;
       background: white;
       color: white;
       z-index: 10;
