@@ -14,11 +14,11 @@ function checkClaimedReward($ip_address, $device_fingerprint)
     $stmtCheck = $db->prepare("SELECT id FROM claimed_vouchers WHERE ip_address = ? OR device_fingerprint = ?");
     $stmtCheck->execute([$ip_address, $device_fingerprint]);
     $existingClaim = $stmtCheck->fetch();
-    
+
     if ($existingClaim) {
         return true;
     } else {
-        return false; 
+        return false;
     }
 }
 
@@ -44,7 +44,7 @@ try {
         $stmtSelect->execute([$requestData['claim_reward']['prize'], 0]);
         $resultSelect = $stmtSelect->fetch();
 
-        if ($resultSelect !== false) {
+        if ($resultSelect) {
             // Update the claimed status for the voucher
             $stmtInsert = $db->prepare('INSERT INTO claimed_vouchers(ip_address,device_fingerprint,voucher_code,claimed_at) values (?,?,?,?)');
             $stmtInsert->execute([$requestData['ip_address'], $requestData['device_fingerprint'], $resultSelect['code'], date('Y-m-d H:i:s')]);
@@ -54,6 +54,10 @@ try {
             $stmtUpdate->execute([1, $resultSelect['code']]);
             http_response_code(200);
             echo json_encode(array("message" => $resultSelect['code']));
+            exit();
+        } else {
+            http_response_code(404);
+            echo json_encode(array("message" => "No Code Found For This"));
             exit();
         }
     }
@@ -65,9 +69,6 @@ try {
         // Respond with success
         http_response_code(200);
         echo json_encode(array("message" => "Participation recorded successfully"));
-    } else {
-        http_response_code(404);
-        echo json_encode(array("message" => "No Code Found For This"));
     }
 } catch (PDOException $e) {
     http_response_code(500);

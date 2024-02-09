@@ -20,7 +20,7 @@ const data = {
     {
       id: 2,
       sort_order: 2,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
@@ -34,14 +34,14 @@ const data = {
     {
       id: 4,
       sort_order: 4,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 5,
       sort_order: 5,
-      name: "5%",
+      name: "55€",
       type: "voucher",
       reward_item: true,
     },
@@ -55,98 +55,98 @@ const data = {
     {
       id: 7,
       sort_order: 7,
-      name: "5%",
+      name: "55€",
       type: "voucher",
       reward_item: true,
     },
     {
       id: 8,
       sort_order: 8,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 9,
       sort_order: 9,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 10,
       sort_order: 10,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 11,
       sort_order: 11,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 12,
       sort_order: 12,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 13,
       sort_order: 13,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 14,
       sort_order: 14,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 15,
       sort_order: 15,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 16,
       sort_order: 16,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 17,
       sort_order: 17,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 18,
       sort_order: 18,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 19,
       sort_order: 19,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 20,
       sort_order: 20,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
@@ -160,14 +160,14 @@ const data = {
     {
       id: 22,
       sort_order: 22,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 23,
       sort_order: 23,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
@@ -181,21 +181,21 @@ const data = {
     {
       id: 25,
       sort_order: 25,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 26,
       sort_order: 26,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 27,
       sort_order: 27,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
@@ -209,21 +209,21 @@ const data = {
     {
       id: 29,
       sort_order: 29,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 30,
       sort_order: 30,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 31,
       sort_order: 31,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
@@ -237,21 +237,21 @@ const data = {
     {
       id: 33,
       sort_order: 33,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 34,
       sort_order: 34,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 35,
       sort_order: 35,
-      name: "5%",
+      name: "55€",
       type: "wrp",
       reward_item: true,
     },
@@ -661,15 +661,22 @@ class Wheel1 extends Component {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
         }
       );
-
+      if(response.status===404){
+        this.setState({ obtainedError: "invalidCode" });
+      }
       // Handle response as needed
       const voucherCode = response.data.message;
       console.log("Your voucher code is: " + voucherCode);
       this.setState({ voucherCode: voucherCode });
       this.setState({ isOpenModal: true });
+      
     } catch (error) {
+
       if (error.response.data.alreadyClaimed) {
         this.setState({ obtainedError: "alreadyGotCode" });
+      }
+      if(error.response.status===404){
+        this.setState({ obtainedError: "invalidCode" });
       }
       // Handle error
     }
@@ -685,7 +692,7 @@ class Wheel1 extends Component {
           <canvas id="canvas" width="600" height="600" style={{cursor:this.state.isFinished?"not-allowed":"pointer"}}/>
           {this.state.isFinished && (
             <div className="reward_container">
-              <ConfettiComponent />
+              {!this.state.obtainedError&&<ConfettiComponent />}
               <h3 style={{ textAlign: "center", color: "green", marginTop:"1rem"}}>
                 {this.props.getTranslation(this.props.lang,"youHaveWon")}{this.state.winner} !
               </h3>
