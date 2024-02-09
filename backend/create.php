@@ -4,11 +4,9 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Headers: *");
 
-// Assuming you're using PDO for database access
-// Include your database connection configuration file
+
 require 'db_config.php';
 
-// Define the function outside the try block
 function checkClaimedReward($ip_address, $device_fingerprint)
 {
     $database = new Connection();
@@ -25,7 +23,6 @@ try {
     $database = new Connection();
     $db = $database->openConnection();
 
-    // Validate the request data (you might want to perform more thorough validation)
     if (!isset($requestData['ip_address']) || !isset($requestData['device_fingerprint'])) {
         http_response_code(400);
         echo json_encode(array("error" => "Invalid request data"));
@@ -53,14 +50,18 @@ try {
             exit();
         }
     }
+    if (isset($requestData['insertUser'])) {
+        // Insert the participation record into the database
+        $stmt = $db->prepare("INSERT INTO participation_records (ip_address, device_fingerprint,voucher_id) VALUES (?, ?, ?)");
+        $stmt->execute([$requestData['ip_address'], $requestData['device_fingerprint'], $resultSelect['id']]);
 
-    // Insert the participation record into the database
-    $stmt = $db->prepare("INSERT INTO participation_records (ip_address, device_fingerprint) VALUES (?, ?)");
-    $stmt->execute([$requestData['ip_address'], $requestData['device_fingerprint']]);
-
-    // Respond with success
-    http_response_code(200);
-    echo json_encode(array("message" => "Participation recorded successfully"));
+        // Respond with success
+        http_response_code(200);
+        echo json_encode(array("message" => "Participation recorded successfully"));
+    } else {
+        http_response_code(404);
+        echo json_encode(array("message" => "No Code Found For This"));
+    }
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(array("error" => "Internal server error"));

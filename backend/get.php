@@ -1,14 +1,14 @@
 <?php
-header('Access-Control-Allow-Origin: *'); // Change to your domain
+header('Access-Control-Allow-Origin: *'); 
 header('Access-Control-Allow-Headers: *');
-header('Access-Control-Allow-Methods: *'); // Specify allowed methods
+header('Access-Control-Allow-Methods: *'); 
 
-require_once('./db_config.php'); // Make sure this file exists and contains necessary configuration for database connection
+require_once('./db_config.php');
 
 $device_fingerprint = isset($_GET['device_fingerprint']) ? $_GET['device_fingerprint'] : "";
 $ip_address = isset($_GET['ip_address']) ? $_GET['ip_address'] : "";
 
-$response = array(); // Initialize response as an array
+$response = array(); 
 
 if (empty($device_fingerprint) || empty($ip_address)) {
     $response = array(

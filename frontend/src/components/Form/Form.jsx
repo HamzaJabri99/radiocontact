@@ -99,6 +99,7 @@ const Form = ({ showVid, setShowVid, videoEnded, getTranslation, lang }) => {
     const requestData = {
       ip_address: ipAddress,
       device_fingerprint: deviceFingerprint,
+      insertUser: true,
     };
     console.log(requestData);
 
@@ -171,17 +172,18 @@ const Form = ({ showVid, setShowVid, videoEnded, getTranslation, lang }) => {
             </div>
           </form>
           <div>
-            {successMsg&&<p
-              className="success"
-              ref={wheelRef}
-              style={{ textAlign: "center", margin: "1rem auto" }}
-            >
-              <h3 style={{ color: "green" }}>
-                {getTranslation(lang, successMsg)}
-                
-              </h3>
-              <BsHandIndex className="handIndex" fontSize={30}/>
-            </p>}
+            {successMsg && (
+              <p
+                className="success"
+                ref={wheelRef}
+                style={{ textAlign: "center", margin: "1rem auto" }}
+              >
+                <h3 style={{ color: "green" }}>
+                  {getTranslation(lang, successMsg)}
+                </h3>
+                <BsHandIndex className="handIndex" fontSize={30} />
+              </p>
+            )}
 
             {successMsg && (
               <Wheel1 lang={lang} getTranslation={getTranslation} />
