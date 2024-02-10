@@ -12,7 +12,7 @@ const Modal = ({
 }) => {
   const [showSendMail, setShowMail] = useState(false);
   const handleConfirm = () => {
-    let confirmed = window.confirm(getTranslations(lang,'youSureWannaClose'));
+    let confirmed = window.confirm(getTranslations(lang, "youSureWannaClose"));
     if (confirmed) {
       setIsOpen(true);
     }
@@ -37,17 +37,23 @@ const Modal = ({
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
               <button className={styles.deleteBtn} onClick={handleConfirm}>
-                {getTranslations(lang,"okDone")}
+                {getTranslations(lang, "okDone")}
               </button>
               <button
                 className={styles.cancelBtn}
                 onClick={() => setShowMail(!showSendMail)}
               >
-                {getTranslations(lang,"sendMail")}
+                {getTranslations(lang, "sendMail")}
               </button>
             </div>
           </div>
-          {showSendMail && <SendMail lang={lang} getTranslations={getTranslations}/>}
+          {showSendMail && (
+            <SendMail
+              lang={lang}
+              getTranslations={getTranslations}
+              code={voucherCode}
+            />
+          )}
         </div>
       </div>
     </div>

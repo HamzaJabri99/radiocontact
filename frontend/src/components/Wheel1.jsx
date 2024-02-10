@@ -8,7 +8,6 @@ import "./Wheel1.css";
 import ConfettiComponent from "./ConfettiComponent";
 
 const data = {
-
   spin_wheel_options: [
     {
       id: 1,
@@ -263,7 +262,6 @@ const data = {
       reward_item: true,
     },
   ],
-  
 };
 
 class Wheel1 extends Component {
@@ -661,7 +659,7 @@ class Wheel1 extends Component {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
         }
       );
-      if(response.status===404){
+      if (response.status === 404) {
         this.setState({ obtainedError: "invalidCode" });
       }
       // Handle response as needed
@@ -669,13 +667,11 @@ class Wheel1 extends Component {
       console.log("Your voucher code is: " + voucherCode);
       this.setState({ voucherCode: voucherCode });
       this.setState({ isOpenModal: true });
-      
     } catch (error) {
-
       if (error.response.data.alreadyClaimed) {
         this.setState({ obtainedError: "alreadyGotCode" });
       }
-      if(error.response.status===404){
+      if (error.response.status === 404) {
         this.setState({ obtainedError: "invalidCode" });
       }
       // Handle error
@@ -689,12 +685,26 @@ class Wheel1 extends Component {
     return (
       <React.Fragment>
         <div id="wheelContainer">
-          <canvas id="canvas" width="600" height="600" style={{cursor:this.state.isFinished?"not-allowed":"pointer"}}/>
+          <canvas
+            id="canvas"
+            width="600"
+            height="600"
+            style={{
+              cursor: this.state.isFinished ? "not-allowed" : "pointer",
+            }}
+          />
           {this.state.isFinished && (
             <div className="reward_container">
-              {!this.state.obtainedError&&<ConfettiComponent />}
-              <h3 style={{ textAlign: "center", color: "green", marginTop:"1rem"}}>
-                {this.props.getTranslation(this.props.lang,"youHaveWon")}{this.state.winner} !
+              {!this.state.obtainedError && <ConfettiComponent />}
+              <h3
+                style={{
+                  textAlign: "center",
+                  color: "green",
+                  marginTop: "1rem",
+                }}
+              >
+                {this.props.getTranslation(this.props.lang, "youHaveWon")}
+                {this.state.winner} !
               </h3>
               <button
                 onClick={this.handleClaimReward}
@@ -702,7 +712,6 @@ class Wheel1 extends Component {
                 className="claimReward_btn"
               >
                 <CiGift size={50} className="cadeau" />
-
                 {this.props.getTranslation(this.props.lang, "getReward")} !
               </button>
               <p style={{ color: "red" }}>
