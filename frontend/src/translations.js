@@ -16,7 +16,7 @@ const translations = {
       "Félicitations, Vos réponses sont correctes! Cliquez sur la roue pour avoir une chance de gagner.",
     getReward: "Obtenez votre bon",
     alreadyGotCode: "Désolé, vous avez déjà reçu un code",
-    youHaveWon: "Vous avez gangé ",
+    youHaveWon: "Vous avez gagné ",
     hereIsYourCode: "Congratulations! Voici ton Coupon Code",
     keepItSafe: "Enregistrez-le bien, sinon vous ne pourrez plus l'obtenir :D",
     youSureWannaClose: "Avez-vous enregistré votre code ?",
@@ -24,6 +24,8 @@ const translations = {
     okDone: "OK fait",
     send: "Envoyer",
     invalidCode: "Désolé, il ne reste plus aucun code pour ce bon",
+    loading: "Chargement",
+    sent: "envoyé!",
   },
   deu: {
     ready_to_win: "Klaar om te winnen?",
@@ -50,6 +52,8 @@ const translations = {
     okDone: "oke, klaar",
     send: "versturen",
     invalidCode: "Sorry, er is geen code meer voor deze voucher",
+    loading: "Bezig met laden",
+    sent: "Verzonden",
   },
 };
 export default translations;
