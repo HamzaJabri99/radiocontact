@@ -44,7 +44,7 @@ function App() {
           params: requestData,
         }
       );
-      console.log(participant.data);
+      //console.log(participant.data);
       setAlreadyParticipated(participant.data.participated);
     };
 

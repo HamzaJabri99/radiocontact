@@ -40,7 +40,7 @@ try {
             echo json_encode(array("error" => "You have already claimed a voucher", "alreadyClaimed" => true));
             exit();
         }
-        $stmtSelect = $db->prepare("SELECT id,code FROM vouchers WHERE value=? AND claimed=?");
+        $stmtSelect = $db->prepare("SELECT id,code,value FROM vouchers WHERE value=? AND claimed=?");
         $stmtSelect->execute([$requestData['claim_reward']['prize'], 0]);
         $resultSelect = $stmtSelect->fetch();
 
@@ -52,6 +52,8 @@ try {
             $stmtUpdateUser->execute([$resultSelect['id'], $requestData['ip_address'], $requestData['device_fingerprint']]);
             $stmtUpdate = $db->prepare("UPDATE vouchers SET claimed=? WHERE code=?");
             $stmtUpdate->execute([1, $resultSelect['code']]);
+            $stmtUpdateWinnersAmount = $db->prepare("UPDATE winners_tracking SET winners_count= winners_count-1 WHERE voucher_value=?");
+            $stmtUpdateWinnersAmount->execute([$resultSelect['value']]);
             http_response_code(200);
             echo json_encode(array("message" => $resultSelect['code']));
             exit();

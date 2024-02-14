@@ -19,7 +19,7 @@ const SendMail = ({ lang, getTranslations, code }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost/radiocontact/backend/sendMail.php",
+        "/api/sendMail.php",
         { lang, code, email },
         { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
       );

@@ -6,6 +6,8 @@ import axios from "axios";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import "./Wheel1.css";
 import ConfettiComponent from "./ConfettiComponent";
+import spinSound from "/lucky_wheel.mp3";
+import winningSound from "/winning.mp3";
 
 const data = {
   spin_wheel_options: [
@@ -33,7 +35,7 @@ const data = {
     {
       id: 4,
       sort_order: 4,
-      name: "5%",
+      name: "10%",
       type: "wrp",
       reward_item: true,
     },
@@ -54,7 +56,7 @@ const data = {
     {
       id: 7,
       sort_order: 7,
-      name: "5%",
+      name: "10%",
       type: "voucher",
       reward_item: true,
     },
@@ -75,7 +77,7 @@ const data = {
     {
       id: 10,
       sort_order: 10,
-      name: "5%",
+      name: "10%",
       type: "wrp",
       reward_item: true,
     },
@@ -103,7 +105,7 @@ const data = {
     {
       id: 14,
       sort_order: 14,
-      name: "5%",
+      name: "10%",
       type: "wrp",
       reward_item: true,
     },
@@ -124,14 +126,14 @@ const data = {
     {
       id: 17,
       sort_order: 17,
-      name: "5%",
+      name: "10%",
       type: "wrp",
       reward_item: true,
     },
     {
       id: 18,
       sort_order: 18,
-      name: "5%",
+      name: "10%",
       type: "wrp",
       reward_item: true,
     },
@@ -159,7 +161,7 @@ const data = {
     {
       id: 22,
       sort_order: 22,
-      name: "5%",
+      name: "10%",
       type: "wrp",
       reward_item: true,
     },
@@ -194,7 +196,7 @@ const data = {
     {
       id: 27,
       sort_order: 27,
-      name: "5%",
+      name: "100€",
       type: "wrp",
       reward_item: true,
     },
@@ -215,7 +217,7 @@ const data = {
     {
       id: 30,
       sort_order: 30,
-      name: "5%",
+      name: "10%",
       type: "wrp",
       reward_item: true,
     },
@@ -236,7 +238,7 @@ const data = {
     {
       id: 33,
       sort_order: 33,
-      name: "5%",
+      name: "10%",
       type: "wrp",
       reward_item: true,
     },
@@ -272,97 +274,60 @@ class Wheel1 extends Component {
     voucherCode: "",
     isOpenModal: false,
     obtainedError: "",
+    segments:[ '5%', '20€', '10€', '5%', '5€', '10€', '10%', '5€', '10€',
+     '10%', '5€', '5%', '10%', '20€', '10%', '10€', '5€',
+      '5%', '5%', '5%', '5%', '5%', '50€', '10%', '10%',
+       '5%', '100€', '10%', '5%', '5€',
+        '10%', '20€', '5€', '5€', 
+        '50€', '10%'
+    ]
   };
+   
+
+
+  audioSpinRef = createRef();
+  audioWinningRef = createRef();
   timerHandle = 0;
   timerDelay = 33;
   angleCurrent = 0;
   angleDelta = 0;
   size = 290;
   canvasContext = null;
-  colors = [
-    "#EE4040",
-    "#F0CF50",
-    "#815CD1",
-    "#3DA5E0",
-    "#34A24F",
-    "#F9AA1F",
-    "#EC3F3F",
-    "#FF9000",
-    "#815CD1",
-    "#3DA5E0",
-    "#3CBA5B",
-    "#F9AA1F",
-    "#EE4040",
-    "#F0CF50",
-    "#815CD1",
-    "#3DA5E0",
-    "#34A24F",
-    "#F9AA1F",
-    "#EC3F3F",
-    "#FF9000",
-    "#4A90E2",
-    "#FF6347",
-    "#00FF7F",
-    "#800080",
-    "##FF27B4",
-    "#8A2BE2",
-    "#2E8B57",
-    "#815CD1",
-    "#3DA5E0",
-    "#3CBA5B",
-    "#F9AA1F",
-    "#FF9000",
-    "#815CD1",
-    "#3DA5E0",
-    "#3CBA5B",
-    "#F9AA1F",
-  ];
+  colors = [];
 
   segments = [];
 
-  seg_color = [
-    "#EE4040",
-    "#F0CF50",
-    "#815CD1",
-    "#3DA5E0",
-    "#34A24F",
-    "#F9AA1F",
-    "#EC3F3F",
-    "#FF9000",
-    "#815CD1",
-    "#3DA5E0",
-    "#3CBA5B",
-    "#F9AA1F",
-    "#EE4040",
-    "#F0CF50",
-    "#815CD1",
-    "#3DA5E0",
-    "#34A24F",
-    "#F9AA1F",
-    "#EC3F3F",
-    "#FF9000",
-    "#815CD1",
-    "#4A90E2",
-    "#FF6347",
-    "#00FF7F",
-    "#800080",
-    "#FF27B4",
-    "#8A2BE2",
-    "#2E8B57",
-    "#3DA5E0",
-    "#3CBA5B",
-    "#F9AA1F",
-    "#FF9000",
-    "#815CD1",
-    "#3DA5E0",
-    "#3CBA5B",
-    "#F9AA1F",
-  ];
+  seg_color = [];
+  colors1 = [];
+  seg_color1 = [];
+  generateColors = (colors, seg_colors) => {
+    const repeatedColors = [
+      "#0F1920",
+      "#FE69B1",
+      "#1E808D",
+      "#03FFFE",
+      "#C51F4A",
+      "#2E3E42",
+      "#00796B",
+      "#8B0000",
+    ];
+
+    for (let i = 0; i < 36; i++) {
+      let colorIndex = i % repeatedColors.length;
+      let color = repeatedColors[colorIndex];
+     if(i==26){
+      color="#01259E"
+     }
+      colors.push(color);
+      seg_colors.push(color);
+    }
+  };
+
   // Cache of segments to colors
   maxSpeed = Math.PI / 16;
   upTime = 500;
   // How long to spin up for (in ms)
-  downTime = 10000;
+  downTime = 8500;
   winningSegment = "";
   // How long to slow down for (in ms)
   spinStart = 0;
@@ -372,18 +337,33 @@ class Wheel1 extends Component {
   claimRewardButtonRef = createRef();
   constructor(props) {
     super(props);
-    if (data.spin_wheel_options && data.spin_wheel_options.length > 0) {
-      this.segments = data.spin_wheel_options.map((i) => i.name);
-      this.winningSegment = this.segments[0];
-    }
+    // if (data.spin_wheel_options && data.spin_wheel_options.length > 0) {
+    //   this.segments = data.spin_wheel_options.map((i) => i.name);
+    //   this.winningSegment = this.segments[0];
+    // }
   }
   componentDidMount() {
-    //console.log("winning segment should be " + this.winningSegment);
-    if (data.spin_wheel_options && data.spin_wheel_options.length > 0) {
-      this.segments = data.spin_wheel_options.map((i) => i.name);
-    }
-    this.wheelInit();
-    this.wheelUpdate();
+    this.generateColors(this.colors, this.seg_color);
+    console.log(this.colors1.length);
+    axios
+      .get("http://localhost/radiocontact/backend/getTrackings.php")
+      .then((response) => {
+        let vouchers_lessThan0 = response.data.message.filter((item) => {
+          return item.winners_count <= 0; // Check if winners_count is less than or equal to 0
+        });
+
+        let filtered_lessThan0 = this.state.segments.filter((item) => {
+          return !vouchers_lessThan0.some(
+            (voucher) => voucher.voucher_value == item
+          );
+        });
+        this.setState({segments: filtered_lessThan0})
+        this.wheelInit();
+        this.wheelUpdate();
+        console.log(this.state)
+      });
+    // this.wheelInit();
+    // this.wheelUpdate();
 
     //Hide the address bar (for mobile devices)!
     setTimeout(() => {
@@ -397,6 +377,12 @@ class Wheel1 extends Component {
       this.state.isFinished
     ) {
       this.scrollToButton();
+    }
+    if (this.state.isPlayedAlready && !this.state.isFinished) {
+      this.audioSpinRef.current.play();
+    }
+    if (!prevState.isFinished && this.state.isFinished) {
+      this.audioWinningRef.current.play();
     }
   }
 
@@ -464,13 +450,14 @@ class Wheel1 extends Component {
 
     if (duration < this.upTime) {
       progress = duration / this.upTime;
-      this.angleDelta = this.maxSpeed * Math.sin((progress * Math.PI) / 2);
+      this.angleDelta = this.maxSpeed * Math.sin((progress * Math.PI) / 10);
     } else {
       progress = duration / this.downTime;
+      this.maxSpeed *= 0.992;
       this.angleDelta =
-        this.maxSpeed * Math.sin((progress * Math.PI) / 2 + Math.PI / 2);
+        this.maxSpeed * Math.sin((progress * Math.PI) / 2 + Math.PI / 10);
 
-      if (progress >= 1) finished = true;
+      if (progress >= 1 || this.maxSpeed < 0.01) finished = true;
     }
     this.angleCurrent += this.angleDelta;
     while (this.angleCurrent >= Math.PI * 2)
@@ -478,7 +465,7 @@ class Wheel1 extends Component {
       this.angleCurrent -= Math.PI * 2;
 
     if (finished) {
-      console.log(this.state);
+      //console.log(this.state);
       this.setState({
         isFinished: true,
       });
@@ -506,7 +493,7 @@ class Wheel1 extends Component {
     var centerY = this.centerY;
     var size = this.size;
 
-    var segments = this.segments;
+    var segments = this.state.segments;
     //   var len = this.segments.length;
     var colors = this.seg_color;
 
@@ -545,7 +532,7 @@ class Wheel1 extends Component {
     var angleCurrent = this.angleCurrent;
     var lastAngle = angleCurrent;
     //   var segments = this.segments;
-    var len = this.segments.length;
+    var len = this.state.segments.length;
     //   var colors = this.colors;
     //    var colorsLen = this.colors.length;
 
@@ -609,21 +596,21 @@ class Wheel1 extends Component {
     // Calculate current segment index
     var change = this.angleCurrent + Math.PI / 2;
     var segmentIndex =
-      this.segments.length -
-      Math.floor((change / (Math.PI * 2)) * this.segments.length) -
+      this.state.segments.length -
+      Math.floor((change / (Math.PI * 2)) * this.state.segments.length) -
       1;
 
-    if (segmentIndex < 0) segmentIndex = segmentIndex + this.segments.length;
+    if (segmentIndex < 0) segmentIndex = segmentIndex + this.state.segments.length;
 
     // Display value of current segment on the needle
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#fff";
-    ctx.font = "bold 1rem proxima-nova";
-    ctx.fillText("Becharge ", centerX, centerY - 10);
+    //ctx.font = "bold 1rem proxima-nova";
+    //ctx.fillText("Becharge ", centerX, centerY - 10);
     ctx.font = "bold 2rem proxima-nova";
-    ctx.fillText(this.segments[segmentIndex], centerX, centerY + 20);
-    this.setState({ winner: this.segments[segmentIndex] });
+    ctx.fillText(this.state.segments[segmentIndex], centerX, centerY + 0);
+    this.setState({ winner: this.state.segments[segmentIndex] });
   };
 
   clear = () => {
@@ -636,14 +623,14 @@ class Wheel1 extends Component {
       // Fetch user's IP address
       const ipResponse = await axios.get("https://api64.ipify.org?format=json");
       const ipAddress = ipResponse.data.ip;
-      console.log(ipAddress);
+      //console.log(ipAddress);
       // Generate device fingerprint using FingerprintJS library
       const fp = await FingerprintJS.load();
       const result = await fp.get();
 
       // Extract a unique identifier for the device
       const deviceFingerprint = result.visitorId;
-      console.log(deviceFingerprint);
+      //console.log(deviceFingerprint);
       // Include IP address and device fingerprint in the request body
       const requestData = {
         ip_address: ipAddress,
@@ -664,7 +651,7 @@ class Wheel1 extends Component {
       }
       // Handle response as needed
       const voucherCode = response.data.message;
-      console.log("Your voucher code is: " + voucherCode);
+      //console.log("Your voucher code is: " + voucherCode);
       this.setState({ voucherCode: voucherCode });
       this.setState({ isOpenModal: true });
     } catch (error) {
@@ -684,6 +671,14 @@ class Wheel1 extends Component {
   render() {
     return (
       <React.Fragment>
+        <audio ref={this.audioSpinRef}>
+          <source src={spinSound} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <audio ref={this.audioWinningRef}>
+          <source src={winningSound} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
         <div id="wheelContainer">
           <canvas
             id="canvas"

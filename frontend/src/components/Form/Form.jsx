@@ -101,7 +101,7 @@ const Form = ({ showVid, setShowVid, videoEnded, getTranslation, lang }) => {
       device_fingerprint: deviceFingerprint,
       insertUser: true,
     };
-    console.log(requestData);
+    //console.log(requestData);
 
     if (validateForm()) {
       // Logic for submitting the form goes here
@@ -173,7 +173,7 @@ const Form = ({ showVid, setShowVid, videoEnded, getTranslation, lang }) => {
           </form>
           <div>
             {successMsg && (
-              <p
+              <div
                 className="success"
                 ref={wheelRef}
                 style={{ textAlign: "center", margin: "1rem auto" }}
@@ -182,7 +182,7 @@ const Form = ({ showVid, setShowVid, videoEnded, getTranslation, lang }) => {
                   {getTranslation(lang, successMsg)}
                 </h3>
                 <BsHandIndex className="handIndex" fontSize={30} />
-              </p>
+              </div>
             )}
 
             {successMsg && (
