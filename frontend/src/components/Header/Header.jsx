@@ -1,7 +1,7 @@
 import "./Header.css";
 // import castsImg from '../../../public/667399.png'
-import frenchLogo from "/french_flag.png";
-import dutchLogo from "/dutch_flag.png";
+import frenchLogo from "/fr_logo.svg";
+import dutchLogo from "/nl_logo.svg";
 import backgroundContact from "/radiocontactImg1.png";
 import backgroundQ from "/qmusicOpti.png";
 import bechargeLogo from "/26_250w.jpg";

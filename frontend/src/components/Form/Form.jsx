@@ -107,7 +107,7 @@ const Form = ({ showVid, setShowVid, videoEnded, getTranslation, lang }) => {
       // Logic for submitting the form goes here
       // For demonstration purposes, I'm just setting a success message
       const insertResult = await axios.post(
-        "http://localhost/radiocontact/backend/create.php",
+        "/api/create.php",
         requestData,
         {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -118,7 +118,7 @@ const Form = ({ showVid, setShowVid, videoEnded, getTranslation, lang }) => {
       setSuccessMsg("");
     } else {
       const insertResult = await axios.post(
-        "http://localhost/radiocontact/backend/create.php",
+        "/api/create.php",
         requestData,
         {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },

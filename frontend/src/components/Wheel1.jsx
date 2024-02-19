@@ -346,7 +346,7 @@ class Wheel1 extends Component {
     this.generateColors(this.colors, this.seg_color);
     console.log(this.colors1.length);
     axios
-      .get("http://localhost/radiocontact/backend/getTrackings.php")
+      .get("/api/getTrackings.php")
       .then((response) => {
         let vouchers_lessThan0 = response.data.message.filter((item) => {
           return item.winners_count <= 0; // Check if winners_count is less than or equal to 0
@@ -434,7 +434,7 @@ class Wheel1 extends Component {
     // Start the wheel only if it's not already spinning
     if (this.timerHandle === 0 && !this.state.isFinished) {
       this.spinStart = new Date().getTime();
-      this.maxSpeed = Math.PI / (16 + Math.random());
+      this.maxSpeed = Math.PI / (16 + Math.random()*8);//recent
       this.frames = 0;
       this.timerHandle = setInterval(this.onTimerTick, this.timerDelay);
     }
@@ -640,7 +640,7 @@ class Wheel1 extends Component {
 
       // Send request to claim reward with user's IP address and device fingerprint
       const response = await axios.post(
-        "http://localhost/radiocontact/backend/create.php",
+        "/api/create.php",
         requestData,
         {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },

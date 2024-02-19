@@ -4,7 +4,7 @@ const translations = {
     participation_header:
       "Participez à notre compétition et tentez de gagner des codes de bons d'achat !",
     p1: "Participez dès maintenant à notre compétition de chance pour gagner des codes de bons d'achat ! Cliquez sur la roue de la fortune pour tenter votre chance et remporter des prix incroyables.",
-    p2: "À gagner : des codes de bons d'achat d'une valeur de 5%, 5€, 10€, 20€, 50€ et même 100€ !",
+    p2: "À gagner : des codes de bons d'achat d'une valeur de 5%, 10%, 5€, 10€, 20€, 50€ et même 100€ !",
     p3: "Après avoir visionné la vidéo, répondez correctement aux questions posées et vous aurez l'opportunité de faire tourner la roue pour gagner l'un de ces fantastiques prix.",
     p4: "La compétition est ouverte à tous, alors n'hésitez pas à participer dès maintenant !",
     p5: "Une fois que vous avez obtenu votre code de bon d'achat, rendez-vous sur becharge.be pour profiter de vos achats et utiliser votre code pour obtenir des réductions incroyables sur une variété de produits.",
@@ -32,7 +32,7 @@ const translations = {
     participation_header:
       "Neem deel aan onze wedstrijd en probeer vouchercodes te winnen!",
     p1: "Neem nu deel aan onze gelukswedstrijd en win vouchercodes! Klik op het rad van fortuin om je geluk te beproeven en ongelooflijke prijzen te winnen.",
-    p2: "Te winnen: vouchercodes ter waarde van 5%, € 5, € 10, € 20, € 50 en zelfs € 100!",
+    p2: "Te winnen: vouchercodes ter waarde van 5%, 10%, € 5, € 10, € 20, € 50 en zelfs € 100!",
     p3: "Beantwoord na het bekijken van de video de vragen correct en je krijgt de kans om aan het rad te draaien en een van deze fantastische prijzen te winnen.",
     p4: "De wedstrijd staat open voor iedereen, dus aarzel niet om nu deel te nemen!",
     p5: "Zodra u uw vouchercode heeft ontvangen, gaat u naar becharge.be om te winkelen en gebruikt u uw code om geweldige kortingen te krijgen op een verscheidenheid aan producten.",

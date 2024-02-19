@@ -9,7 +9,7 @@ const Video = ({ setVideoEnded,lang }) => {
       className="react-player"
       width="100%"
       height="100%"
-      url={lang=="fr"?"https://www.youtube.com/embed/NmfTmVRrjgc":"https://www.youtube.com/embed/uwElq9XQsLM"}
+      url={lang=="fr"?"https://www.youtube.com/embed/ZDpQj4q2rYM":"https://www.youtube.com/embed/uwElq9XQsLM"}
       loop={false}
       onEnded={handleVideoEnded}
     />

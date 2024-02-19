@@ -39,7 +39,7 @@ function App() {
         device_fingerprint: deviceFingerprint,
       };
       const participant = await axios.get(
-        "http://localhost/radiocontact/backend/get.php",
+        "/api/get.php",
         {
           params: requestData,
         }
