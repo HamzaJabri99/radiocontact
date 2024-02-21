@@ -26,6 +26,11 @@ const translations = {
     invalidCode: "Désolé, il ne reste plus aucun code pour ce bon",
     loading: "Chargement",
     sent: "envoyé!",
+    dataCollectionHeader: "Consentement à la collecte de données",
+    consentFormDescription:
+      'Nous collectons et stockons certaines données, notamment les adresses IP, les empreintes digitales du navigateur et les e-mails, pour améliorer votre expérience utilisateur. En cliquant sur "J\'accepte", vous acceptez nos pratiques de collecte de données.',
+    consent: "J'accepte",
+    notConsent: "je n'accepte pas",
   },
   deu: {
     ready_to_win: "Klaar om te winnen?",
@@ -54,6 +59,11 @@ const translations = {
     invalidCode: "Sorry, er is geen code meer voor deze voucher",
     loading: "Bezig met laden",
     sent: "Verzonden",
+    dataCollectionHeader: "Toestemming voor gegevensverzameling",
+    consentFormDescription:
+      'We verzamelen en bewaren bepaalde gegevens, waaronder IP-adressen, browservingerafdrukken en e-mails, om uw gebruikerservaring te verbeteren. Door op "Ik ga akkoord" te klikken, gaat u akkoord met onze gegevensverzamelingspraktijken.',
+    consent: "Ik ga akkoord",
+    notConsent: "ik ga niet akkoord",
   },
 };
 export default translations;

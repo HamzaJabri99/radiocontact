@@ -6,6 +6,7 @@ import Video from "./components/Video";
 import axios from "axios";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import translations from "./translations";
+import ConsentForm from "./components/ConsentForm/ConsentForm";
 function App() {
   const [showVid, setShowVid] = useState(true);
   const [alreadyParticipated, setAlreadyParticipated] = useState(false);
@@ -38,12 +39,9 @@ function App() {
         ip_address: ipAddress,
         device_fingerprint: deviceFingerprint,
       };
-      const participant = await axios.get(
-        "/api/get.php",
-        {
-          params: requestData,
-        }
-      );
+      const participant = await axios.get("/api/get.php", {
+        params: requestData,
+      });
       //console.log(participant.data);
       setAlreadyParticipated(participant.data.participated);
     };
@@ -81,6 +79,7 @@ function App() {
       ) : (
         ""
       )}
+      <ConsentForm lang={lang} getTranslation={getTranslation} />
     </div>
   );
 }
