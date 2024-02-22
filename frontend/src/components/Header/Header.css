@@ -25,6 +25,9 @@
   font-size: 3rem;
   z-index: 0;
   margin-right: 2rem;
+  font-weight: 800;
+  position: absolute;
+  right: 1px;
 }
 .Header .language_div {
   display: flex;
@@ -32,11 +35,19 @@
   align-items: center;
   gap: 0.5rem;
   margin-left: 1rem;
+  position: absolute;
+  top: 30px;
+  right: 12px;
+  cursor: pointer;
 }
 .Header .language_div img {
   width: 40px;
   height: auto;
   cursor: pointer;
+}
+.language_div span{
+ color: #fff;
+ font-weight: 800;
 }
 @media screen and (max-width: 1536px) {
   .Header {
@@ -62,6 +73,17 @@
 }
 @media screen and (max-width: 645px) {
   .Header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     background-image: url("/radiocontactImgMobile.png");
+  }
+}
+@media screen and (max-width: 480px) {
+  .Header h2 {
+    font-size: 1.4rem;
+    top: 140px;
   }
 }

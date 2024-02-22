@@ -120,6 +120,9 @@ border-radius: 12rem;
   }
 }
 @media screen and (max-width:640px) {
+  .consent-form h2{
+    font-size: 1rem;
+  }
   .consent-form {
     background-color: white;
     padding: 30px 20px 40px;
